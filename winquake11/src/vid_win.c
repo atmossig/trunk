@@ -17,6 +17,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 */
+
 // vid_win.c -- Win32 video driver
 
 #include "quakedef.h"
@@ -145,12 +146,12 @@ void VID_MenuKey (int key);
 LONG WINAPI MainWndProc (HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 void AppActivate(BOOL fActive, BOOL minimize);
 
-
 /*
 ================
 VID_RememberWindowPos
 ================
 */
+
 void VID_RememberWindowPos (void)
 {
 	RECT	rect;
@@ -168,12 +169,12 @@ void VID_RememberWindowPos (void)
 	}
 }
 
-
 /*
 ================
 VID_CheckWindowXY
 ================
 */
+
 void VID_CheckWindowXY (void)
 {
 
@@ -187,12 +188,12 @@ void VID_CheckWindowXY (void)
 	}
 }
 
-
 /*
 ================
 VID_UpdateWindowStatus
 ================
 */
+
 void VID_UpdateWindowStatus (void)
 {
 
@@ -206,12 +207,12 @@ void VID_UpdateWindowStatus (void)
 	IN_UpdateClipCursor ();
 }
 
-
 /*
 ================
 ClearAllStates
 ================
 */
+
 void ClearAllStates (void)
 {
 	int		i;
@@ -226,12 +227,12 @@ void ClearAllStates (void)
 	IN_ClearStates ();
 }
 
-
 /*
 ================
 VID_CheckAdequateMem
 ================
 */
+
 qboolean VID_CheckAdequateMem (int width, int height)
 {
 	int		tbuffersize;
@@ -251,12 +252,12 @@ qboolean VID_CheckAdequateMem (int width, int height)
 	return true;
 }
 
-
 /*
 ================
 VID_AllocBuffers
 ================
 */
+
 qboolean VID_AllocBuffers (int width, int height)
 {
 	int		tsize, tbuffersize;
@@ -295,14 +296,12 @@ qboolean VID_AllocBuffers (int width, int height)
 	return true;
 }
 
-
 void initFatalError(void)
 {
 	MGL_exit();
 	MGL_fatalError(MGL_errorMsg(MGL_result()));
 	exit(EXIT_FAILURE);
 }
-
 
 int VID_Suspend (MGLDC *dc,m_int flags)
 {
@@ -347,7 +346,6 @@ int VID_Suspend (MGLDC *dc,m_int flags)
 
 }
 
-
 void registerAllDispDrivers(void)
 {
 	/* Event though these driver require WinDirect, we register
@@ -374,13 +372,11 @@ void registerAllDispDrivers(void)
 	}
 }
 
-
 void registerAllMemDrivers(void)
 {
 	/* Register memory context drivers */
 	MGL_registerDriver(MGL_PACKED8NAME,PACKED8_driver);
 }
-
 
 void VID_InitMGLFull (HINSTANCE hInstance)
 {
@@ -614,7 +610,6 @@ MGLDC *createDisplayDC(int forcemem)
 	return dc;
 }
 
-
 void VID_InitMGLDIB (HINSTANCE hInstance)
 {
 	WNDCLASS		wc;
@@ -701,12 +696,12 @@ void VID_InitMGLDIB (HINSTANCE hInstance)
 	DDActive = 0;
 }
 
-
 /*
 =================
 VID_InitFullDIB
 =================
 */
+
 void VID_InitFullDIB (HINSTANCE hInstance)
 {
 	DEVMODE	devmode;
@@ -1003,12 +998,12 @@ int VID_NumModes (void)
 	return nummodes;
 }
 
-	
 /*
 =================
 VID_GetModePtr
 =================
 */
+
 vmode_t *VID_GetModePtr (int modenum)
 {
 
@@ -1018,12 +1013,12 @@ vmode_t *VID_GetModePtr (int modenum)
 		return &badmode;
 }
 
-
 /*
 =================
 VID_CheckModedescFixup
 =================
 */
+
 void VID_CheckModedescFixup (int mode)
 {
 	int		x, y, stretch;
@@ -1047,12 +1042,12 @@ void VID_CheckModedescFixup (int mode)
 	}
 }
 
-
 /*
 =================
 VID_GetModeDescriptionMemCheck
 =================
 */
+
 char *VID_GetModeDescriptionMemCheck (int mode)
 {
 	char		*pinfo;
@@ -1076,12 +1071,12 @@ char *VID_GetModeDescriptionMemCheck (int mode)
 	}
 }
 
-
 /*
 =================
 VID_GetModeDescription
 =================
 */
+
 char *VID_GetModeDescription (int mode)
 {
 	char		*pinfo;
@@ -1097,7 +1092,6 @@ char *VID_GetModeDescription (int mode)
 	return pinfo;
 }
 
-
 /*
 =================
 VID_GetModeDescription2
@@ -1105,6 +1099,7 @@ VID_GetModeDescription2
 Tacks on "windowed" or "fullscreen"
 =================
 */
+
 char *VID_GetModeDescription2 (int mode)
 {
 	static char	pinfo[40];
@@ -1132,7 +1127,6 @@ char *VID_GetModeDescription2 (int mode)
 
 	return pinfo;
 }
-
 
 // KJB: Added this to return the mode driver name in description for console
 
@@ -1164,7 +1158,6 @@ char *VID_GetExtModeDescription (int mode)
 	return pinfo;
 }
 
-
 void DestroyDIBWindow (void)
 {
 
@@ -1178,7 +1171,6 @@ void DestroyDIBWindow (void)
 		windc = dibdc = NULL;
 	}
 }
-
 
 void DestroyFullscreenWindow (void)
 {
@@ -1194,8 +1186,6 @@ void DestroyFullscreenWindow (void)
 	}
 }
 
-
-
 void DestroyFullDIBWindow (void)
 {
 	if (modestate == MS_FULLDIB)
@@ -1210,7 +1200,6 @@ void DestroyFullDIBWindow (void)
 		windc = dibdc = NULL;
 	}
 }
-
 
 qboolean VID_SetWindowedMode (int modenum)
 {
@@ -1366,7 +1355,6 @@ qboolean VID_SetWindowedMode (int modenum)
 	return true;
 }
 
-
 qboolean VID_SetFullscreenMode (int modenum)
 {
 
@@ -1417,7 +1405,6 @@ qboolean VID_SetFullscreenMode (int modenum)
 
 	return true;
 }
-
 
 qboolean VID_SetFullDIBMode (int modenum)
 {
@@ -1525,7 +1512,6 @@ qboolean VID_SetFullDIBMode (int modenum)
 	return true;
 }
 
-
 void VID_RestoreOldMode (int original_mode)
 {
 	static qboolean	inerror = false;
@@ -1550,7 +1536,6 @@ void VID_RestoreOldMode (int original_mode)
 	inerror = false;
 }
 
-
 void VID_SetDefaultMode (void)
 {
 
@@ -1559,7 +1544,6 @@ void VID_SetDefaultMode (void)
 
 	IN_DeactivateMouse ();
 }
-
 
 int VID_SetMode (int modenum, unsigned char *palette)
 {
@@ -1775,7 +1759,6 @@ void VID_UnlockBuffer (void)
 
 }
 
-
 int VID_ForceUnlockedAndReturnState (void)
 {
 	int	lk;
@@ -1798,7 +1781,6 @@ int VID_ForceUnlockedAndReturnState (void)
 	return lk;
 }
 
-
 void VID_ForceLockState (int lk)
 {
 
@@ -1810,7 +1792,6 @@ void VID_ForceLockState (int lk)
 
 	lockcount = lk;
 }
-
 
 void	VID_SetPalette (unsigned char *palette)
 {
@@ -1881,12 +1862,10 @@ void	VID_SetPalette (unsigned char *palette)
 	}
 }
 
-
 void	VID_ShiftPalette (unsigned char *palette)
 {
 	VID_SetPalette (palette);
 }
-
 
 /*
 =================
@@ -1993,7 +1972,6 @@ void VID_TestMode_f (void)
 	}
 }
 
-
 /*
 =================
 VID_Windowed_f
@@ -2005,7 +1983,6 @@ void VID_Windowed_f (void)
 	VID_SetMode ((int)vid_windowed_mode.value, vid_curpal);
 }
 
-
 /*
 =================
 VID_Fullscreen_f
@@ -2016,7 +1993,6 @@ void VID_Fullscreen_f (void)
 
 	VID_SetMode ((int)vid_fullscreen_mode.value, vid_curpal);
 }
-
 
 /*
 =================
@@ -2031,8 +2007,6 @@ void VID_Minimize_f (void)
 	if (modestate == MS_WINDOWED)
 		ShowWindow (mainwindow, SW_MINIMIZE);
 }
-
-
 
 /*
 =================
@@ -2053,7 +2027,6 @@ void VID_ForceMode_f (void)
 		force_mode_set = 0;
 	}
 }
-
 
 void	VID_Init (unsigned char *palette)
 {
@@ -2177,7 +2150,6 @@ void	VID_Init (unsigned char *palette)
 	strcpy (badmode.modedesc, "Bad mode");
 }
 
-
 void	VID_Shutdown (void)
 {
 	HDC				hdc;
@@ -2209,12 +2181,12 @@ void	VID_Shutdown (void)
 	}
 }
 
-
 /*
 ================
 FlipScreen
 ================
 */
+
 void FlipScreen(vrect_t *rects)
 {
 	HRESULT		ddrval;
@@ -2300,7 +2272,6 @@ void FlipScreen(vrect_t *rects)
 		ReleaseDC(mainwindow, hdcScreen);
 	}
 }
-
 
 void	VID_Update (vrect_t *rects)
 {
@@ -2405,12 +2376,12 @@ void	VID_Update (vrect_t *rects)
 	}
 }
 
-
 /*
 ================
 D_BeginDirectRect
 ================
 */
+
 void D_BeginDirectRect (int x, int y, byte *pbitmap, int width, int height)
 {
 	int		i, j, reps, repshift;
@@ -2500,12 +2471,12 @@ void D_BeginDirectRect (int x, int y, byte *pbitmap, int width, int height)
 	}
 }
 
-
 /*
 ================
 D_EndDirectRect
 ================
 */
+
 void D_EndDirectRect (int x, int y, int width, int height)
 {
 	int		i, j, reps, repshift;
@@ -2587,7 +2558,6 @@ void D_EndDirectRect (int x, int y, int width, int height)
 			MGL_beginDirectAccess();
 	}
 }
-
 
 //==========================================================================
 
@@ -2776,12 +2746,12 @@ void AppActivate(BOOL fActive, BOOL minimize)
 	}
 }
 
-
 /*
 ================
 VID_HandlePause
 ================
 */
+
 void VID_HandlePause (qboolean pause)
 {
 
@@ -2799,7 +2769,6 @@ void VID_HandlePause (qboolean pause)
 		}
 	}
 }
-
 
 /*
 ===================================================================
@@ -3039,7 +3008,6 @@ LONG WINAPI MainWndProc (
     return lRet;
 }
 
-
 extern void M_Menu_Options_f (void);
 extern void M_Print (int cx, int cy, char *str);
 extern void M_PrintWhite (int cx, int cy, char *str);
@@ -3069,6 +3037,7 @@ static modedesc_t	modedescs[MAX_MODEDESCS];
 VID_MenuDraw
 ================
 */
+
 void VID_MenuDraw (void)
 {
 	qpic_t		*p;
@@ -3246,12 +3215,12 @@ void VID_MenuDraw (void)
 	}
 }
 
-
 /*
 ================
 VID_MenuKey
 ================
 */
+
 void VID_MenuKey (int key)
 {
 	if (vid_testingmode)

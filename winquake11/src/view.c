@@ -68,7 +68,6 @@ float	v_dmg_time, v_dmg_roll, v_dmg_pitch;
 
 extern	int			in_forward, in_forward2, in_back;
 
-
 /*
 ===============
 V_CalcRoll
@@ -76,6 +75,7 @@ V_CalcRoll
 Used by view and sv_user
 ===============
 */
+
 vec3_t	forward, right, up;
 
 float V_CalcRoll (vec3_t angles, vec3_t velocity)
@@ -102,13 +102,13 @@ float V_CalcRoll (vec3_t angles, vec3_t velocity)
 	
 }
 
-
 /*
 ===============
 V_CalcBob
 
 ===============
 */
+
 float V_CalcBob (void)
 {
 	float	bob;
@@ -179,6 +179,7 @@ Drifting is enabled when the center view key is hit, mlook is released and
 lookspring is non 0, or when 
 ===============
 */
+
 void V_DriftPitch (void)
 {
 	float		delta, move;
@@ -238,10 +239,6 @@ void V_DriftPitch (void)
 	}
 }
 
-
-
-
-
 /*
 ============================================================================== 
  
@@ -249,8 +246,7 @@ void V_DriftPitch (void)
  
 ============================================================================== 
 */ 
- 
- 
+
 cshift_t	cshift_empty = { {130,80,50}, 0 };
 cshift_t	cshift_water = { {130,80,50}, 128 };
 cshift_t	cshift_slime = { {0,25,5}, 150 };
@@ -306,13 +302,12 @@ qboolean V_CheckGamma (void)
 	return true;
 }
 
-
-
 /*
 ===============
 V_ParseDamage
 ===============
 */
+
 void V_ParseDamage (void)
 {
 	int		armor, blood;
@@ -378,7 +373,6 @@ void V_ParseDamage (void)
 	v_dmg_time = v_kicktime.value;
 }
 
-
 /*
 ==================
 V_cshift_f
@@ -391,7 +385,6 @@ void V_cshift_f (void)
 	cshift_empty.destcolor[2] = atoi(Cmd_Argv(3));
 	cshift_empty.percent = atoi(Cmd_Argv(4));
 }
-
 
 /*
 ==================
@@ -439,6 +432,7 @@ void V_SetContentsColor (int contents)
 V_CalcPowerupCshift
 =============
 */
+
 void V_CalcPowerupCshift (void)
 {
 	if (cl.items & IT_QUAD)
@@ -478,6 +472,7 @@ void V_CalcPowerupCshift (void)
 V_CalcBlend
 =============
 */
+
 #ifdef	GLQUAKE
 void V_CalcBlend (void)
 {
@@ -680,7 +675,6 @@ void V_UpdatePalette (void)
 }
 #endif	// !GLQUAKE
 
-
 /* 
 ============================================================================== 
  
@@ -702,6 +696,7 @@ float angledelta (float a)
 CalcGunAngle
 ==================
 */
+
 void CalcGunAngle (void)
 {	
 	float	yaw, pitch, move;
@@ -760,6 +755,7 @@ void CalcGunAngle (void)
 V_BoundOffsets
 ==============
 */
+
 void V_BoundOffsets (void)
 {
 	entity_t	*ent;
@@ -790,13 +786,13 @@ V_AddIdle
 Idle swaying
 ==============
 */
+
 void V_AddIdle (void)
 {
 	r_refdef.viewangles[ROLL] += v_idlescale.value * sin(cl.time*v_iroll_cycle.value) * v_iroll_level.value;
 	r_refdef.viewangles[PITCH] += v_idlescale.value * sin(cl.time*v_ipitch_cycle.value) * v_ipitch_level.value;
 	r_refdef.viewangles[YAW] += v_idlescale.value * sin(cl.time*v_iyaw_cycle.value) * v_iyaw_level.value;
 }
-
 
 /*
 ==============
@@ -805,6 +801,7 @@ V_CalcViewRoll
 Roll is induced by movement and damage
 ==============
 */
+
 void V_CalcViewRoll (void)
 {
 	float		side;
@@ -827,13 +824,13 @@ void V_CalcViewRoll (void)
 
 }
 
-
 /*
 ==================
 V_CalcIntermissionRefdef
 
 ==================
 */
+
 void V_CalcIntermissionRefdef (void)
 {
 	entity_t	*ent, *view;
@@ -861,6 +858,7 @@ V_CalcRefdef
 
 ==================
 */
+
 void V_CalcRefdef (void)
 {
 	entity_t	*ent, *view;
@@ -990,6 +988,7 @@ The player's clipping box goes from (-16 -16 -24) to (16 16 32) from
 the entity origin, so any view position inside that will be valid
 ==================
 */
+
 extern vrect_t	scr_vrect;
 
 void V_RenderView (void)
@@ -1068,6 +1067,7 @@ void V_RenderView (void)
 V_Init
 =============
 */
+
 void V_Init (void)
 {
 	Cmd_AddCommand ("v_cshift", V_cshift_f);	
@@ -1109,5 +1109,3 @@ void V_Init (void)
 	BuildGammaTable (1.0);	// no gamma yet
 	Cvar_RegisterVariable (&v_gamma);
 }
-
-

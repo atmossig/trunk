@@ -17,6 +17,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 */
+
 //
 // vregset.c: video register-setting interpreter
 //
@@ -40,6 +41,7 @@ void loutportb (int port, int val)
 VideoRegisterSet
 ================
 */
+
 void VideoRegisterSet (int *pregset)
 {
 	int		port, temp0, temp1, temp2;
@@ -78,4 +80,3 @@ void VideoRegisterSet (int *pregset)
 		}
 	}
 }
-

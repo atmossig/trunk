@@ -43,7 +43,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define MAX_SCAN_LINE	9
 #define UNDERLINE		0x14
 #define	MODE_CONTROL	0x17
-
 //
 // register-set commands
 //
@@ -53,4 +52,3 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define VRS_WORD_OUT	3
 
 void VideoRegisterSet (int *pregset);
-
