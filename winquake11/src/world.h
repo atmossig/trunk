@@ -17,6 +17,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 */
+
 // world.h
 
 typedef struct
@@ -36,11 +37,9 @@ typedef struct
 	edict_t	*ent;			// entity the surface is on
 } trace_t;
 
-
 #define	MOVE_NORMAL		0
 #define	MOVE_NOMONSTERS	1
 #define	MOVE_MISSILE	2
-
 
 void SV_ClearWorld (void);
 // called after the world model has been loaded, before linking any entities

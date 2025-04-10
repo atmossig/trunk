@@ -17,16 +17,14 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 */
+
 // world.c -- world query functions
 
 #include "quakedef.h"
 
 /*
-
-entities never clip against themselves, or their owner
-
-line of sight checks trace->crosscontent, but bullets don't
-
+	entities never clip against themselves, or their owner
+	line of sight checks trace->crosscontent, but bullets don't
 */
 
 
@@ -41,7 +39,6 @@ typedef struct
 	edict_t		*passedict;
 } moveclip_t;
 
-
 int SV_HullPointContents (hull_t *hull, int num, vec3_t p);
 
 /*
@@ -51,7 +48,6 @@ HULL BOXES
 
 ===============================================================================
 */
-
 
 static	hull_t		box_hull;
 static	dclipnode_t	box_clipnodes[6];
@@ -93,7 +89,6 @@ void SV_InitBoxHull (void)
 	
 }
 
-
 /*
 ===================
 SV_HullForBox
@@ -113,8 +108,6 @@ hull_t	*SV_HullForBox (vec3_t mins, vec3_t maxs)
 
 	return &box_hull;
 }
-
-
 
 /*
 ================
@@ -253,7 +246,6 @@ void SV_ClearWorld (void)
 	SV_CreateAreaNode (0, sv.worldmodel->mins, sv.worldmodel->maxs);
 }
 
-
 /*
 ===============
 SV_UnlinkEdict
@@ -267,7 +259,6 @@ void SV_UnlinkEdict (edict_t *ent)
 	RemoveLink (&ent->area);
 	ent->area.prev = ent->area.next = NULL;
 }
-
 
 /*
 ====================
@@ -317,7 +308,6 @@ void SV_TouchLinks ( edict_t *ent, areanode_t *node )
 	if ( ent->v.absmin[node->axis] < node->dist )
 		SV_TouchLinks ( ent, node->children[1] );
 }
-
 
 /*
 ===============
@@ -369,6 +359,7 @@ SV_LinkEdict
 
 ===============
 */
+
 void SV_LinkEdict (edict_t *ent, qboolean touch_triggers)
 {
 	areanode_t	*node;
@@ -384,6 +375,7 @@ void SV_LinkEdict (edict_t *ent, qboolean touch_triggers)
 
 // set the abs box
 
+// Huh?
 #ifdef QUAKE2
 	if (ent->v.solid == SOLID_BSP && 
 	(ent->v.angles[0] || ent->v.angles[1] || ent->v.angles[2]) )
@@ -470,8 +462,6 @@ void SV_LinkEdict (edict_t *ent, qboolean touch_triggers)
 		SV_TouchLinks ( ent, sv_areanodes );
 }
 
-
-
 /*
 ===============================================================================
 
@@ -488,6 +478,7 @@ SV_HullPointContents
 
 ==================
 */
+
 int SV_HullPointContents (hull_t *hull, int num, vec3_t p)
 {
 	float		d;
@@ -514,9 +505,7 @@ int SV_HullPointContents (hull_t *hull, int num, vec3_t p)
 	
 	return num;
 }
-
 #endif	// !id386
-
 
 /*
 ==================
@@ -524,6 +513,7 @@ SV_PointContents
 
 ==================
 */
+
 int SV_PointContents (vec3_t p)
 {
 	int		cont;
@@ -539,8 +529,6 @@ int SV_TruePointContents (vec3_t p)
 	return SV_HullPointContents (&sv.worldmodel->hulls[0], 0, p);
 }
 
-//===========================================================================
-
 /*
 ============
 SV_TestEntityPosition
@@ -548,6 +536,7 @@ SV_TestEntityPosition
 This could be a lot more efficient...
 ============
 */
+
 edict_t	*SV_TestEntityPosition (edict_t *ent)
 {
 	trace_t	trace;
@@ -578,6 +567,7 @@ SV_RecursiveHullCheck
 
 ==================
 */
+
 qboolean SV_RecursiveHullCheck (hull_t *hull, int num, float p1f, float p2f, vec3_t p1, vec3_t p2, trace_t *trace)
 {
 	dclipnode_t	*node;
@@ -709,7 +699,6 @@ qboolean SV_RecursiveHullCheck (hull_t *hull, int num, float p1f, float p2f, vec
 
 	return false;
 }
-
 
 /*
 ==================
@@ -884,7 +873,6 @@ void SV_ClipToLinks ( areanode_t *node, moveclip_t *clip )
 		SV_ClipToLinks ( node->children[1], clip );
 }
 
-
 /*
 ==================
 SV_MoveBounds
@@ -959,4 +947,3 @@ trace_t SV_Move (vec3_t start, vec3_t mins, vec3_t maxs, vec3_t end, int type, e
 
 	return clip.trace;
 }
-
