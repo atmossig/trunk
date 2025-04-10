@@ -58,8 +58,6 @@ void W_CleanupName (char *in, char *out)
 		out[i] = 0;
 }
 
-
-
 /*
 ====================
 W_LoadWadFile
@@ -97,7 +95,6 @@ void W_LoadWadFile (char *filename)
 			SwapPic ( (qpic_t *)(wad_base + lump_p->filepos));
 	}
 }
-
 
 /*
 =============
