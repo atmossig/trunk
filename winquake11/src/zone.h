@@ -79,8 +79,6 @@ Zone block
 
 ----- Bottom of Memory -----
 
-
-
 */
 
 void Memory_Init (void *buf, int size);
@@ -126,6 +124,3 @@ void *Cache_Alloc (cache_user_t *c, int size, char *name);
 // wasn't enough room.
 
 void Cache_Report (void);
-
-
-

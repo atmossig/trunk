@@ -17,7 +17,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 */
-// Z_zone.c
+// zone.c
 
 #include "quakedef.h"
 
@@ -50,6 +50,8 @@ void Cache_FreeHigh (int new_high_hunk);
 ==============================================================================
 
 						ZONE MEMORY ALLOCATION
+
+==============================================================================
 
 There is never any space between memblocks, and there will never be two
 contiguous free memblocks.
@@ -782,7 +784,6 @@ void Cache_Print (void)
 /*
 ============
 Cache_Report
-
 ============
 */
 void Cache_Report (void)
@@ -793,7 +794,6 @@ void Cache_Report (void)
 /*
 ============
 Cache_Compact
-
 ============
 */
 void Cache_Compact (void)
@@ -803,7 +803,6 @@ void Cache_Compact (void)
 /*
 ============
 Cache_Init
-
 ============
 */
 void Cache_Init (void)
@@ -932,4 +931,3 @@ void Memory_Init (void *buf, int size)
 	mainzone = Hunk_AllocName (zonesize, "zone" );
 	Z_ClearZone (mainzone, zonesize);
 }
-
